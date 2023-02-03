@@ -3,6 +3,7 @@ import 'package:diebuddy/screens/authentication_screens/login_screen.dart';
 import 'package:diebuddy/screens/home_screen.dart';
 import 'package:diebuddy/screens/result_screen.dart';
 import 'package:diebuddy/ui_elements/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,11 +24,20 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
+
+
   @override
   void initState() {
     startAnimation();
     // TODO: implement initState
     super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if(user == null){
+        print('userSignOut');
+      }else{
+        print('userSignIn!');
+      }
+    });
   }
 
   @override
@@ -40,12 +50,11 @@ class _SplashScreenState extends State<SplashScreen> {
             backgroundColor: primaryColor,
             animationDuration: Duration(milliseconds: 1200),
             splashTransition: SplashTransition.fadeTransition,
-            nextScreen: LogInScreen())
+            nextScreen: FirebaseAuth.instance.currentUser !=null ? HomeScreen() :LogInScreen())
       )
     );
   }
 }
-
 
 Widget Splash(){
   return Container(

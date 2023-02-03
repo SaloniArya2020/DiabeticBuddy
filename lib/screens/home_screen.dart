@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String?username;
   final _key = GlobalKey<FormState>();
 
-
+/// getting barcode scanned
   barcodeScanner() async {
     String barcode = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666', 'cancel', true, ScanMode.BARCODE);
@@ -183,6 +183,9 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
 
+    setState(() {
+      currentUserId = FirebaseAuth.instance.currentUser!.uid;
+    });
     getUser();
   }
 
