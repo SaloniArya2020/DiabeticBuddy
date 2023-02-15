@@ -81,7 +81,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 /// Email text field
                 TextFormField(
                   validator: (val) =>
-                      val!.isEmpty ? 'Please fill the email' : null,
+                      val!.trim().isEmpty ? 'Please fill the email' : null,
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -106,7 +106,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 /// password text field
                 TextFormField(
                   validator: (val){
-                    if(val!.isEmpty){
+                    if(val!.trim().isEmpty){
                       return 'Please fill the input';
                     }else if(val!.length <5){
                       return 'password is too short!';

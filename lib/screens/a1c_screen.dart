@@ -93,7 +93,7 @@ class _A1CScreenState extends State<A1CScreen> {
               Form(
                 key: _key,
                 child: TextFormField(
-                  validator: (val) => (val!.isEmpty ||
+                  validator: (val) => (val!.trim().isEmpty ||
                           double.parse(val!) > 10 ||
                       double.parse(val!) < 4)
                       ? 'HbA1C should be between 4-10'
